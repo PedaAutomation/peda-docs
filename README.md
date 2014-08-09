@@ -110,6 +110,18 @@ Target a specific Output-Capability (`tts` in this case):
 
 `targetCapability` and `targetDevice` can be mixed.
 
+## Receiving Output:
+When the Master thinks that this slave should output something, it sends an "output" message. It may send a targetCapability. In this case, the output should only be forwarded to that plugin.
+
+```
+{
+  "message": "output",
+  "data": {
+    "data": "<OUTPUT>",
+    "targetCapability": "tts"
+}
+```
+
 
 ## TODO
 * Setup
