@@ -122,6 +122,17 @@ When the Master thinks that this slave should output something, it sends an "out
 }
 ```
 
+## Handling Logic:
+When the Master is of the opinion that the Slave should handle some Logic, it sends a "handleLogic" message:
+```
+{
+  "message": "handleLogic",
+  "data": {
+    "command": "what is the weather like",
+    "capability": "logic-weather:weather"
+  }
+}
+```
 
 ## TODO
 * Setup
