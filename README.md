@@ -14,6 +14,8 @@ As noted before, Slaves find the Master via Bonjour. When they find the Master, 
 ```
 The Slave connects to the Master. Then Communication begins.
 
+### Init
+
 First, the Slave has to identify itself with a name. This name will be known to all the other slaves and can also be used in commands:
 ```
 { 
@@ -56,6 +58,22 @@ After that is done, the server has to know the slave's capabilities. There are 3
   ]
 }
 ```
+
+After this message was sent, initialization is done. Now the slave and master are registered successfully and the fun can begin.
+
+### Sending Input:
+When the Slave wants to send input, he simply has to send an "input" message:
+```
+{
+  "message": "input",
+  "data": {
+    "command": "<PARSED_INPUT>"
+  }
+}
+```
+The slave can also add additional parameters to the data object which will get send to the logic parsing the command.
+
+
 
 ## TODO
 * Setup
