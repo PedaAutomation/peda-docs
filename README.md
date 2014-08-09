@@ -110,7 +110,7 @@ Target a specific Output-Capability (`tts` in this case):
 
 `targetCapability` and `targetDevice` can be mixed.
 
-## Receiving Output:
+### Receiving Output:
 When the Master thinks that this slave should output something, it sends an "output" message. It may send a targetCapability. In this case, the output should only be forwarded to that plugin.
 
 ```
@@ -122,7 +122,7 @@ When the Master thinks that this slave should output something, it sends an "out
 }
 ```
 
-## Handling Logic:
+### Handling Logic:
 When the Master is of the opinion that the Slave should handle some Logic, it sends a "handleLogic" message:
 ```
 {
