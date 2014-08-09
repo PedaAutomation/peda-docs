@@ -73,6 +73,42 @@ When the Slave wants to send input, he simply has to send an "input" message:
 ```
 The slave can also add additional parameters to the data object which will get sent to the logic parsing the command.
 
+### Sending Output:
+If one of the slaves logic-plugins wants to send output, an "outputForward" message has to get sent. You can target a specific slave and/or a specific output-plugin-type, or you can simply output to all available slaves and output types:
+
+Broadcast:
+```
+{
+  "message": "outputForward",
+  "data": {
+    "data": "<OUTPUT_DATA>"
+  }
+}
+```
+
+Target a specific Slave:
+```
+{
+  "message": "outputForward",
+  "data": {
+    "data": "<OUTPUT_DATA>",
+    "targetDevice": "<SLAVE_NAME>"
+  }
+}
+```
+
+Target a specific Output-Capability (`tts` in this case):
+```
+{
+  "message": "outputForward",
+  "data": {
+    "data": "<OUTPUT_DATA>",
+    "targetCapability": "tts"
+  }
+}
+```
+
+`targetCapability` and `targetDevice` can be mixed.
 
 
 ## TODO
