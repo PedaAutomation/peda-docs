@@ -22,7 +22,40 @@ First, the Slave has to identify itself with a name. This name will be known to 
 }
 ```
 
-After that is done, the server has to know the slave's capabilities. 
+After that is done, the server has to know the slave's capabilities. There are 3 different types of capabilities: input, logic and output. At the moment, those only consist of a name. Additionally the logic capability has a regex, so it can evaluate inputs:
+```
+{
+  "message": "capabilities",
+  "data": [
+    {
+      "type": "input",
+      "name": "input-tts"
+    },
+    {
+      "type": "input",
+      "name": "input-keyboard"
+    },
+    {
+      "type": "logic",
+      "name": "logic-weather:weather",
+      "regex": "/what is the weather like/g"
+    },
+    {
+      "type": "logic",
+      "name": "logic-sockets:turnon",
+      "regex": "/turn on the tv/g"
+    },
+    {
+      "type": "output",
+      "name": "output-tts"
+    },
+    {
+      "type": "output",
+      "name": "output-display"
+    }
+  ]
+}
+```
 
 ## TODO
 * Setup
