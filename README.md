@@ -71,7 +71,7 @@ When the Slave wants to send input, he simply has to send an "input" message:
   }
 }
 ```
-The slave can also add additional parameters to the data object which will get send to the logic parsing the command.
+The slave can also add additional parameters to the data object which will get sent to the logic parsing the command.
 
 
 
