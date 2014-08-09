@@ -79,7 +79,7 @@ If one of the slaves logic-plugins wants to send output, an "outputForward" mess
 Broadcast:
 ```
 {
-  "message": "outputForward",
+  "message": "forwardOutput",
   "data": {
     "data": "<OUTPUT_DATA>"
   }
@@ -89,7 +89,7 @@ Broadcast:
 Target a specific Slave:
 ```
 {
-  "message": "outputForward",
+  "message": "forwardOutput",
   "data": {
     "data": "<OUTPUT_DATA>",
     "targetDevice": "<SLAVE_NAME>"
@@ -100,7 +100,7 @@ Target a specific Slave:
 Target a specific Output-Capability (`tts` in this case):
 ```
 {
-  "message": "outputForward",
+  "message": "forwardOutput",
   "data": {
     "data": "<OUTPUT_DATA>",
     "targetCapability": "tts"
@@ -115,7 +115,7 @@ When the Master thinks that this slave should output something, it sends an "out
 
 ```
 {
-  "message": "output",
+  "message": "handleOutput",
   "data": {
     "data": "<OUTPUT>",
     "targetCapability": "tts"
