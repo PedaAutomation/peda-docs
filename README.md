@@ -196,7 +196,7 @@ module.exports = function(slave) {
   slave.registerLanguage("en", englishData, true); // The true makes this language the fallback language.
   slave.registerLanguage("de", germanData);
 
-  slave.registerLogic("helloworld" /* This is a unique identifier for the logic call */, slave.__("helloRegex") /* the regex from the translation", function(data, slave) {
+  slave.registerLogic("helloworld" /* This is a unique identifier for the logic call */, slave.__("helloRegex") /* the regex from the translation */, function(data, slave) {
     // data contains the whole input at "data.command".
     // for now, we'll just answer in a simple way
     slave.sendOutput(slave.__("world"));
