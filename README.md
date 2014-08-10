@@ -172,6 +172,8 @@ module.exports = function(slave) {
 }
 ```
 
+** Logic: **
+
 Logic-Plugins are a bit more difficult.
 A Logic Plugin can listen for input, using regex. But because peda is made to be multi-language, it has to localize everything. Here's an example:
 
