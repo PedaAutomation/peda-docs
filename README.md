@@ -134,6 +134,44 @@ When the Master is of the opinion that the Slave should handle some Logic, it se
 }
 ```
 
+## Writing plugins
+Writing plugins is quite simple. They are just NPM-Modules. The Main file (specified in the modules package.json) has to look like this:
+
+```
+module.exports = function(slave) {
+  slave.setType("input"); // or logic or output
+  slave.setName("keyboard"); // The name of this plugin (keyboard, speech, etc.)
+  // Insert stuff here
+}
+```
+
+You have to decide what kind of plugin you want to write: Input, Output or Logic.
+Input and Logic plugins are both really easy to implement:
+
+** Input: **
+
+```
+module.exports = function(slave) {
+  slave.setType("input");
+  slave.setName("modernart");
+  slave.sendInput("Modern Art is in the house"); // Send the command here. You probably want to call this in a callback or somewhere else, depending on your plugin.
+}
+```
+
+** Output: **
+
+```
+module.exports = function(slave) {
+  slave.setType("output");
+  slave.setName("console");
+  slave.on('output', function(data) {
+  	var string = data.data;
+    console.log(string);
+    console.log("Language: " + data.language); // There is also a language parameter, useful for tts etc.
+  });
+}
+```
+
 ## TODO
 * Setup
   * Hardware
