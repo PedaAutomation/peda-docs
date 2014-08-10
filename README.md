@@ -135,7 +135,8 @@ When the Master is of the opinion that the Slave should handle some Logic, it se
 ```
 
 ## Writing plugins
-Writing plugins is quite simple. They are just NPM-Modules. The Main file (specified in the modules package.json) has to look like this:
+
+Writing plugins is quite simple. They are just NPM-Modules in the global path. The Main file (specified in the modules package.json) has to look like this:
 
 ```js
 module.exports = function(slave) {
@@ -144,6 +145,8 @@ module.exports = function(slave) {
   // Insert stuff here
 }
 ```
+
+During development, you can make your local plugin code globally available via `npm link`.
 
 You have to decide what kind of plugin you want to write: Input, Output or Logic.
 Input and Logic plugins are both really easy to implement:
