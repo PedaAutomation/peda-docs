@@ -6,7 +6,7 @@ The basic architecture is a Master-Slave concept. Each slave finds the master vi
 
 ## Master/Slave-Communication
 As noted before, Slaves find the Master via Bonjour. When they find the Master, they connect to it. Communication is served via WebSockets (because they are simple to use with Node.js). The Messages consist of simple JSON. The look like this:
-```
+```js
 {
   "message": "<MESSAGE>",
   "data": "<ADDITIONAL_JSON_DATA>"
@@ -17,7 +17,7 @@ The Slave connects to the Master. Then Communication begins.
 ### Init
 
 First, the Slave has to identify itself with a name. This name will be known to all the other slaves and can also be used in commands:
-```
+```js
 { 
   "message": "name",
   "data": "Livingroom"
@@ -25,7 +25,7 @@ First, the Slave has to identify itself with a name. This name will be known to 
 ```
 
 After that is done, the server has to know the slave's capabilities. There are 3 different types of capabilities: input, logic and output. At the moment, those only consist of a name. Additionally the logic capability has a regex, so it can evaluate inputs:
-```
+```js
 {
   "message": "capabilities",
   "data": [
@@ -63,7 +63,7 @@ After this message was sent, initialization is done. Now the slave and master ar
 
 ### Sending Input:
 When the Slave wants to send input, he simply has to send an "input" message:
-```
+```js
 {
   "message": "input",
   "data": {
@@ -77,7 +77,7 @@ The slave can also add additional parameters to the data object which will get s
 If one of the slaves logic-plugins wants to send output, an "outputForward" message has to get sent. You can target a specific slave and/or a specific output-plugin-type, or you can simply output to all available slaves and output types:
 
 Broadcast:
-```
+```js
 {
   "message": "forwardOutput",
   "data": {
@@ -87,7 +87,7 @@ Broadcast:
 ```
 
 Target a specific Slave:
-```
+```js
 {
   "message": "forwardOutput",
   "data": {
@@ -98,7 +98,7 @@ Target a specific Slave:
 ```
 
 Target a specific Output-Capability (`tts` in this case):
-```
+```js
 {
   "message": "forwardOutput",
   "data": {
@@ -113,7 +113,7 @@ Target a specific Output-Capability (`tts` in this case):
 ### Receiving Output:
 When the Master thinks that this slave should output something, it sends an "output" message. It may send a targetCapability. In this case, the output should only be forwarded to that plugin.
 
-```
+```js
 {
   "message": "handleOutput",
   "data": {
@@ -124,7 +124,7 @@ When the Master thinks that this slave should output something, it sends an "out
 
 ### Handling Logic:
 When the Master is of the opinion that the Slave should handle some Logic, it sends a "handleLogic" message:
-```
+```js
 {
   "message": "handleLogic",
   "data": {
@@ -137,7 +137,7 @@ When the Master is of the opinion that the Slave should handle some Logic, it se
 ## Writing plugins
 Writing plugins is quite simple. They are just NPM-Modules. The Main file (specified in the modules package.json) has to look like this:
 
-```
+```js
 module.exports = function(slave) {
   slave.setType("input"); // or logic or output
   slave.setName("keyboard"); // The name of this plugin (keyboard, speech, etc.)
@@ -150,7 +150,7 @@ Input and Logic plugins are both really easy to implement:
 
 ** Input: **
 
-```
+```js
 module.exports = function(slave) {
   slave.setType("input");
   slave.setName("modernart");
@@ -160,7 +160,7 @@ module.exports = function(slave) {
 
 ** Output: **
 
-```
+```js
 module.exports = function(slave) {
   slave.setType("output");
   slave.setName("console");
@@ -177,7 +177,7 @@ module.exports = function(slave) {
 Logic-Plugins are a bit more difficult.
 A Logic Plugin can listen for input, using regex. But because peda is made to be multi-language, it has to localize everything. Here's an example:
 
-```
+```js
 var germanData = {
   helloRegex: "/hallo/i",
   world: "Hallo Welt"
