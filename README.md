@@ -172,6 +172,43 @@ module.exports = function(slave) {
 }
 ```
 
+Logic-Plugins are a bit more difficult.
+A Logic Plugin can listen for input, using regex. But because peda is made to be multi-language, it has to localize everything. Here's an example:
+
+```
+var germanData = {
+  helloRegex: "/hallo/i",
+  world: "Hallo Welt"
+};
+
+var englishData = {
+  helloRegex: "/hello/i",
+  world: "Hello World"
+};
+
+module.exports = function(slave) {
+  slave.setType("logic");
+  slave.setName("hello");
+ 
+  
+  slave.registerLanguage("en", englishData, true); // The true makes this language the fallback language.
+  slave.registerLanguage("de", germanData);
+
+  slave.registerLogic("helloworld" /* This is a unique identifier for the logic call */, slave.__("helloRegex") /* the regex from the translation", function(data, slave) {
+    // data contains the whole input at "data.command".
+    // for now, we'll just answer in a simple way
+    slave.sendOutput(slave.__("world"));
+    // You can also target a specific device and/or a specific output capability:
+    // slave.sendOutputToSlave("hi", "Livingroom"); -> goes to the livingroom
+    // slave.sendOutputToCapability("hi", "tts"); -> only output via tts
+    // slave.sendOutputToCapabilityAndSlave("hi", "tts", "Livingroom"); -> output via tts only in livingroom
+  });
+
+}
+```
+
+That's the whole deal.
+
 ## TODO
 * Setup
   * Hardware
