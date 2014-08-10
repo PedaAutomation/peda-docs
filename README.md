@@ -151,7 +151,7 @@ During development, you can make your local plugin code globally available via `
 You have to decide what kind of plugin you want to write: Input, Output or Logic.
 Input and Logic plugins are both really easy to implement:
 
-** Input: **
+**Input:**
 
 ```js
 module.exports = function(slave) {
@@ -161,7 +161,7 @@ module.exports = function(slave) {
 }
 ```
 
-** Output: **
+**Output:**
 
 ```js
 module.exports = function(slave) {
@@ -175,7 +175,7 @@ module.exports = function(slave) {
 }
 ```
 
-** Logic: **
+**Logic:**
 
 Logic-Plugins are a bit more difficult.
 A Logic Plugin can listen for input, using regex. But because peda is made to be multi-language, it has to localize everything. Here's an example:
