@@ -146,7 +146,7 @@ module.exports = function(slave) {
 }
 ```
 
-During development, you can make your local plugin code globally available via `npm link`.
+During development, you can make your local plugin code globally available by executing `npm link` and then in the folder with the modules for you peda-slave instance: `npm link <PLUGINNAME>`.
 
 You have to decide what kind of plugin you want to write: Input, Output or Logic.
 Input and Logic plugins are both really easy to implement:
