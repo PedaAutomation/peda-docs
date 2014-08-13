@@ -128,7 +128,9 @@ When the Master is of the opinion that the Slave should handle some Logic, it se
 {
   "message": "handleLogic",
   "data": {
-    "command": "what is the weather like",
+    "command": {
+      "command": "what is the weather like"
+    },
     "capability": "logic-weather:weather"
   }
 }
