@@ -203,6 +203,7 @@ module.exports = function(slave) {
 
   slave.registerLogic("helloworld" /* This is a unique identifier for the logic call */, slave.__("helloRegex") /* the regex from the translation */, function(data, slave) {
     // data contains the whole input at "data.command".
+    // Use 'data.command.command' (!) for the user input (it's the input string).
     // for now, we'll just answer in a simple way
     slave.sendOutput(slave.__("world"));
     // You can also target a specific device and/or a specific output capability:
